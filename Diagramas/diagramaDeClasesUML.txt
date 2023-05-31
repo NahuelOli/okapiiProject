@@ -1,0 +1,74 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam backgroundColor transparent
+skinparam monochrome true
+skinparam shadowing false
+
+
+
+class Sistema{
+  + arrancar()
+  + Sistema()
+}
+
+class BaseDeProyectos{}
+
+class BaseDeUsuarios{}
+
+class Cliente{
+  - id: integer
+  - nombre: String
+  - direccion: String
+  - correoElectronico: String
+  - numeroTelefono: String
+  + Cliente()
+}
+
+class Gerente{
+  + gestionarProyectos()
+  + gestionarClientes ()
+}
+
+class Administrador{
+  + gestionarDesarrolladores()
+}
+
+class Proyecto{
+  - fecha: Fecha
+  - estado: String
+  - presupuesto: Double
+  - estaCompletado: Bool
+  + Proyecto()
+}
+
+class Desarrollador{
+  - nombre: String
+  - disponibilidad: Bool
+  - habilidad: String
+  + Desarrollador()
+}
+
+class Usuario{
+  - usuario: String
+  - password: String
+  - estaLogged: Bool
+  + ingresar(usuario: String, password: String)
+  + verificar()
+}
+
+class Gestor{
+  
+}
+
+
+Sistema *--> BaseDeUsuarios
+Sistema *--> BaseDeProyectos
+BaseDeProyectos <--o Proyecto
+BaseDeUsuarios <--o Usuario
+Usuario <|-- Cliente
+Usuario <|-- Gestor
+Gestor <|-- Gerente
+Gestor <|-- Administrador
+Proyecto <--o Desarrollador
+@enduml
