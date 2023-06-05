@@ -8,6 +8,10 @@ package main;
  *
  * @author Alumno
  */
-public class Usuario {
-    
+public abstract class Usuario {
+    private String username;
+    private String password;
+    private boolean estaLogueado;
+    private int id;
+    private String nombre;
 }
