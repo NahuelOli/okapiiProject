@@ -11,7 +11,9 @@ package main;
 public abstract class Usuario {
     private String username;
     private String password;
-    private boolean estaLogueado;
+    private boolean estaLogueado = false;
     private int id;
     private String nombre;
+    private String opcion;
+  
 }
