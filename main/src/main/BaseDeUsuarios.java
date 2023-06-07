@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class BaseDeUsuarios {
     ArrayList<Usuario> u;
     Scanner scan =new Scanner(System.in);
-    
+    /*
     public void crearUsuario(){
         System.out.println("Ingrese su nuevo nombre de usuario: ");
         this.username = scan.nextLine();
@@ -18,8 +18,14 @@ public class BaseDeUsuarios {
         this.password = scan.nextLine();
         System.out.println("Su nuevo usuario es: "+username+"\nSu nueva contrasena es: "+password);
     }
-
+    */
     public BaseDeUsuarios() {
        u = new ArrayList<>();
     }
+    
+    public boolean estaVacia(){
+        return u.isEmpty();
+    }
+    
+    
 }

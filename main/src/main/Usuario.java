@@ -11,9 +11,15 @@ package main;
 public abstract class Usuario {
     private String username;
     private String password;
-    private boolean estaLogueado = false;
-    private int id;
+    private boolean estaLogueado;
     private String nombre;
-    private String opcion;
-  
+    
+    /*
+    public Usuario(String username, String password){
+        this.username = username;
+        this.password = password;
+        estaLogueado = false;
+    }*/
+    
+    public abstract void verOpciones(Usuario user);
 }
