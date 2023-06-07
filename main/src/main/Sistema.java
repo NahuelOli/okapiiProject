@@ -11,7 +11,6 @@ package main;
 public class Sistema {
 
     private BaseDeUsuarios b;
-    private BaseDeProyectos p;
     
     
     void arrancar() {
