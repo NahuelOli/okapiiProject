@@ -12,4 +12,10 @@ public class BaseDeUsuarios {
     public BaseDeUsuarios() {
        u = new ArrayList<>();
     }
+    
+    public boolean estaVacia(){
+        return u.isEmpty();
+    }
+    
+    
 }

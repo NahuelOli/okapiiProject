@@ -12,6 +12,14 @@ public abstract class Usuario {
     private String username;
     private String password;
     private boolean estaLogueado;
-    private int id;
     private String nombre;
+    
+    /*
+    public Usuario(String username, String password){
+        this.username = username;
+        this.password = password;
+        estaLogueado = false;
+    }*/
+    
+    public abstract void verOpciones(Usuario user);
 }
