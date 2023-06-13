@@ -10,6 +10,10 @@ package main;
  */
 public class Gerente extends Usuario{
 
+    public Gerente(String username, String password){
+        super(username, password);
+    }
+    
     @Override
     public void verOpciones(Usuario user) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
