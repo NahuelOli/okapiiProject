@@ -21,12 +21,14 @@ public class Sistema {
                 mostrarOpciones();
                 opcion = scan.nextLine();
             }
-            
+            System.out.println("Opcion: " + opcion);
             switch(opcion){
                 case "1":
                     loguearUsuario();
+                    
                     break;
                 case "2":
+                    registrarUsuario();
                     break;                    
             }
         } while (!opcion.equalsIgnoreCase("0"));
@@ -51,6 +53,23 @@ public class Sistema {
             user = scan.nextLine();
             System.out.println("Ingrese una password: ");
             password = scan.nextLine();
+        }
+    }
+    
+    public void registrarUsuario(){
+        String user;
+        String password;
+        Scanner scan = new Scanner (System.in);
+        System.out.println("Ingrese un nombre de usuario: ");
+        user = scan.nextLine();
+        System.out.println("Ingrese una password: ");
+        password = scan.nextLine();
+        
+        if (users.chequearUsuario(user)){
+            users.crearUsuario(user, password);
+        } else{
+            System.out.println("Ese usuario ya existe!");
+            System.out.println("Volviendo al menu de inicio.");
         }
     }
     

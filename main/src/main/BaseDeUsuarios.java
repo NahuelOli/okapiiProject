@@ -8,24 +8,42 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BaseDeUsuarios {
-    ArrayList<Usuario> u;
-    Scanner scan =new Scanner(System.in);
-    /*
-    public void crearUsuario(){
-        System.out.println("Ingrese su nuevo nombre de usuario: ");
-        this.username = scan.nextLine();
-        System.out.println("Ingrese su nueva contrasena: ");
-        this.password = scan.nextLine();
-        System.out.println("Su nuevo usuario es: "+username+"\nSu nueva contrasena es: "+password);
-    }
-    */
+    private ArrayList<Usuario> u;
+    private int idSetter;
+
     public BaseDeUsuarios() {
        u = new ArrayList<>();
+       idSetter = 0;
     }
     
     public boolean estaVacia(){
         return u.isEmpty();
     }
     
+    public boolean chequearUsuario(String user){
+        boolean estaDisponible = true;
+        Usuario userAComparar;
+        if(!estaVacia()){
+            int i = 0;
+            do{
+                userAComparar = u.get(i);
+                i++;
+            }while(i < u.size() && !userAComparar.sonIgualesUsers(user));
+            
+            if(userAComparar.sonIgualesUsers(user)){
+                estaDisponible = false;
+            }
+            
+            }
+            return estaDisponible;
+        } 
     
+
+
+    public void crearUsuario(String user, String password) {
+        Usuario usuarioEntrante = new Cliente(user, password);
+        if(u.add(usuarioEntrante)) {
+            System.out.println("Usuario creado con exito.");
+        }
+    }
 }
