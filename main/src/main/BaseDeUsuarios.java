@@ -5,44 +5,59 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BaseDeUsuarios {
+
     private ArrayList<Usuario> u;
     private int idSetter;
 
     public BaseDeUsuarios() {
-       u = new ArrayList<>();
-       idSetter = 0;
+        u = new ArrayList<>();
+        idSetter = 0;
     }
-    
-    public boolean estaVacia(){
+
+    public boolean estaVacia() {
         return u.isEmpty();
     }
-    
-    public boolean chequearUsuario(String user){
+
+    public boolean chequearUsuario(String user) {
         boolean estaDisponible = true;
         Usuario userAComparar;
-        if(!estaVacia()){
+        if (!estaVacia()) {
             int i = 0;
-            do{
+            do {
                 userAComparar = u.get(i);
                 i++;
-            }while(i < u.size() && !userAComparar.sonIgualesUsers(user));
-            
-            if(userAComparar.sonIgualesUsers(user)){
+            } while (i < u.size() && !userAComparar.sonIgualesUsers(user));
+
+            if (userAComparar.sonIgualesUsers(user)) {
                 estaDisponible = false;
             }
-            
-            }
-            return estaDisponible;
-        } 
-    
 
+        }
+        return estaDisponible;
+    }
+
+    public Usuario buscarUsuario(String username) {
+        Usuario userBuscado = null;
+        int i = 0;
+        if (!estaVacia()) {
+            do {
+                userBuscado = u.get(i);
+                i++;
+            } while (i < u.size() && !userBuscado.sonIgualesUsers(username));
+
+            if (!(i < u.size()) && !userBuscado.sonIgualesUsers(username)) {
+                userBuscado = null;
+            }
+        }
+
+        return userBuscado;
+    }
 
     public void crearUsuario(String user, String password) {
         Usuario usuarioEntrante = new Cliente(user, password);
-        if(u.add(usuarioEntrante)) {
+        if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }

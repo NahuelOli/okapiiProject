@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Sistema {
@@ -12,24 +13,25 @@ public class Sistema {
 
     public void arrancar() {
         String opcion;
+        Usuario usuarioLocal;
         do {
             Scanner scan = new Scanner(System.in);
             mostrarOpciones();
             opcion = scan.nextLine();
-            while  (opcion.equalsIgnoreCase("0") && opcion.equalsIgnoreCase("1") && opcion.equalsIgnoreCase("2")){
+            while (opcion.equalsIgnoreCase("0") && opcion.equalsIgnoreCase("1") && opcion.equalsIgnoreCase("2")) {
                 System.out.println("Opcion ingresada fuera de parametro.");
                 mostrarOpciones();
                 opcion = scan.nextLine();
             }
             System.out.println("Opcion: " + opcion);
-            switch(opcion){
+            switch (opcion) {
                 case "1":
-                    loguearUsuario();
-                    
+                    usuarioLocal = loguearUsuario();
+                    usuarioLocal.verOpciones();
                     break;
                 case "2":
                     registrarUsuario();
-                    break;                    
+                    break;
             }
         } while (!opcion.equalsIgnoreCase("0"));
         System.out.println("fin");
@@ -40,37 +42,51 @@ public class Sistema {
         System.out.println("2 - Crear usuario.");
         System.out.println("0 - Salir");
     }
-    
-    
-    public void loguearUsuario(){
+
+    public Usuario loguearUsuario() {
         String user;
         String password;
-        Scanner scan = new Scanner (System.in);
-        if(users.estaVacia()){
+        Usuario userABuscar = null;
+        Scanner scan = new Scanner(System.in);
+        if (users.estaVacia()) {
             System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
-        }else{
+        } else {
             System.out.println("Ingrese un nombre de usuario: ");
             user = scan.nextLine();
-            System.out.println("Ingrese una password: ");
-            password = scan.nextLine();
+            userABuscar = users.buscarUsuario(user);
+            if (userABuscar != null) {
+                //if (userABuscar.sonIgualesUsers(user)) {
+                System.out.println("Ingrese una password: ");
+                password = scan.nextLine();
+                if (userABuscar.sonIgualesPasswords(password)) {
+                    userABuscar.seLogueo();
+                    System.out.println("Iniciaste sesion  con exito.");
+                } else {
+                    System.out.println("Password incorrecto.");
+                }
+                //}
+            } else {
+                System.out.println("Ese usuario no existe.");
+            }
         }
+        return userABuscar;
     }
-    
-    public void registrarUsuario(){
+
+    public void registrarUsuario() {
         String user;
         String password;
-        Scanner scan = new Scanner (System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese un nombre de usuario: ");
         user = scan.nextLine();
         System.out.println("Ingrese una password: ");
         password = scan.nextLine();
-        
-        if (users.chequearUsuario(user)){
+
+        if (users.chequearUsuario(user)) {
             users.crearUsuario(user, password);
-        } else{
+        } else {
             System.out.println("Ese usuario ya existe!");
             System.out.println("Volviendo al menu de inicio.");
         }
     }
-    
+
 }
