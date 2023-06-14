@@ -56,7 +56,8 @@ public class BaseDeUsuarios {
     }
 
     public void crearUsuario(String user, String password) {
-        Usuario usuarioEntrante = new Cliente(user, password);
+        idSetter++;
+        Usuario usuarioEntrante = new Cliente(user, password, idSetter);
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }

@@ -40,7 +40,7 @@ public class Gerente extends Usuario {
             case "1":
                 System.out.println("Cargando clientes...");
                 for (int i = 0; i < 10; i++) {
-                    
+
                 }
                 break;
         }

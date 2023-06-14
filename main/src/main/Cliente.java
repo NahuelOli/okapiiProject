@@ -16,10 +16,17 @@ public class Cliente extends Usuario {
     private int id;
     private String nombre;
     private ArrayList<Proyecto> proyectos;
+    private String correoElectronico;
+    private String numTelefono;
 
-    public Cliente(String username, String password) {
+    public Cliente(String username, String password, int id) {
         super(username, password);
+        this.id = id;
         proyectos = new ArrayList<>();
+        nombre = "";
+        correoElectronico = "";
+        numTelefono = "";
+
     }
 
     public void setId(int id) {
@@ -27,11 +34,18 @@ public class Cliente extends Usuario {
     }
 
     public void completarDatos() {
+        Scanner scan = new Scanner(System.in);
         while (nombre.isBlank()) {
-            Scanner scan = new Scanner(System.in);
-            String nombre;
             System.out.println("Por favor, completa con tu nombre de pila: ");
             nombre = scan.nextLine();
+        }
+        while (correoElectronico.isBlank()) {
+            System.out.println("Correo electronico: ");
+            correoElectronico = scan.nextLine();
+        }
+        while (numTelefono.isBlank()) {
+            System.out.println("Numero de telefono: ");
+            numTelefono = scan.nextLine();
         }
     }
 
@@ -63,7 +77,11 @@ public class Cliente extends Usuario {
                 super.cambiarPassword();
                 break;
             case "3":
-                verDatos();
+                if (!datosCompletos()) {
+                    verDatos();
+                } else {
+                    verDatosCompletos();
+                }
                 break;
             default:
                 System.out.println("Opcion ingresada fuera de parametro.");
@@ -72,11 +90,47 @@ public class Cliente extends Usuario {
     }
 
     private void verProyectos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!proyectos.isEmpty()) {
+
+        } else {
+            System.out.println("No tienes proyectos activos!");
+        }
     }
 
     private void verDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Scanner scan = new Scanner(System.in);
+        String opcion = "";
+        while (!opcion.equals("0") && !opcion.equals("1")) {
+            System.out.println("ID: " + id);
+            System.out.println("Proyectos activos: " + proyectos.size());
+
+            System.out.println("");
+            System.out.println("0 - Salir");
+            System.out.println("1 - Completar datos");
+
+            opcion = scan.nextLine();
+        }
+        if (opcion.equals("1")) {
+            completarDatos();
+        }
     }
 
+    private void verDatosCompletos() {
+        Scanner scan = new Scanner(System.in);
+        String opcion = "";
+        while (!opcion.equals("0")) {
+            System.out.println("ID: " + id);
+            System.out.println("Proyectos activos: " + proyectos.size());
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Correo electronico: " + correoElectronico);
+            System.out.println("Numero de telefono: " + numTelefono);
+            System.out.println("");
+            System.out.println("0 - Salir");
+            opcion = scan.nextLine();
+        }
+    }
+
+    private boolean datosCompletos() {
+        return (!nombre.isBlank() && !numTelefono.isBlank() && !correoElectronico.isBlank());
+    }
 }

@@ -55,7 +55,6 @@ public class Sistema {
             user = scan.nextLine();
             userABuscar = users.buscarUsuario(user);
             if (userABuscar != null) {
-                //if (userABuscar.sonIgualesUsers(user)) {
                 System.out.println("Ingrese una password: ");
                 password = scan.nextLine();
                 if (userABuscar.sonIgualesPasswords(password)) {
@@ -64,7 +63,6 @@ public class Sistema {
                 } else {
                     System.out.println("Password incorrecto.");
                 }
-                //}
             } else {
                 System.out.println("Ese usuario no existe.");
             }
