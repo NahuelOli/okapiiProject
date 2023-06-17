@@ -49,6 +49,8 @@ public class Cliente extends Usuario {
         }
     }
 
+    
+    @Override
     public void verOpciones() {
         Scanner scan = new Scanner(System.in);
         String opcion;
@@ -61,14 +63,14 @@ public class Cliente extends Usuario {
 
             opcion = scan.nextLine();
             hacerOpcion(opcion);
-        } while ((!opcion.equalsIgnoreCase("0")));
-        seDeslogueo();
+        } while ((estaLogueado()));
     }
 
     public void hacerOpcion(String opcion) {
         switch (opcion) {
             case "0":
                 System.out.println("Cerrando sesion...");
+                seDeslogueo();
                 break;
             case "1":
                 verProyectos();

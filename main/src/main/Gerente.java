@@ -20,7 +20,6 @@ public class Gerente extends Usuario {
     public void verOpciones() {
         Scanner scan = new Scanner(System.in);
         String opcion;
-        opcion = scan.nextLine();
         do {
 
             System.out.println("1 - Administrar clientes.");
@@ -29,14 +28,15 @@ public class Gerente extends Usuario {
 
             opcion = scan.nextLine();
             hacerOpcion(opcion);
-        } while ((!opcion.equalsIgnoreCase("0")));
-        seDeslogueo();
+        } while ((estaLogueado()));
     }
 
     public void hacerOpcion(String opcion) {
         switch (opcion) {
             case "0":
                 System.out.println("Cerrando sesion...");
+                seDeslogueo();
+                break;
             case "1":
                 System.out.println("Cargando clientes...");
                 for (int i = 0; i < 10; i++) {

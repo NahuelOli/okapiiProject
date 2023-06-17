@@ -12,7 +12,7 @@ class Proyecto {
     private String nombre;
     private String descripcion;
 
-    public Proyecto(double presupuesto, String nombre, String descrpicion) {
+    public Proyecto(double presupuesto, String nombre, String descripcion) {
         estado = estaEnAprobacion();
         this.nombre = nombre;
         this.descripcion = descripcion;
