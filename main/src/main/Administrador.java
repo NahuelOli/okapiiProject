@@ -1,21 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
-/**
- *
- * @author SirLucho
- */
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Administrador extends Usuario {
 
-    public Administrador(String username, String password) {
+    private ArrayList<Usuario> usuarios;
+
+    public Administrador(String username, String password, ArrayList usuarios) {
         super(username, password);
+        this.usuarios = usuarios;
     }
 
     public void verOpciones() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        {
+            Scanner scan = new Scanner(System.in);
+            String opcion;
+            do {
+
+                System.out.println("1 - Administrar clientes.");
+                System.out.println("0 - Cerrar sesion.");
+                System.out.println("Elige una opcion: ");
+
+                opcion = scan.nextLine();
+                hacerOpcion(opcion);
+            } while ((estaLogueado()));
+        }
+
     }
 
 }

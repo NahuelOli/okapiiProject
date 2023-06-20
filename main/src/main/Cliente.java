@@ -49,7 +49,6 @@ public class Cliente extends Usuario {
         }
     }
 
-    
     @Override
     public void verOpciones() {
         Scanner scan = new Scanner(System.in);

@@ -70,7 +70,7 @@ public class BaseDeUsuarios {
         }
     }
 
-    void crearUsuarioAdministrador(String user, String password)  {
+    void crearUsuarioAdministrador(String user, String password) {
         Usuario usuarioEntrante = new Administrador(user, password);
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
