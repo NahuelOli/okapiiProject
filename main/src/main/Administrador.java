@@ -41,4 +41,9 @@ public class Administrador extends Usuario {
         }
     }
 
+    @Override
+    public int getID() {
+        return -1;
+    }
+
 }

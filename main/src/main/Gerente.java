@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import java.util.ArrayList;
@@ -46,11 +42,16 @@ public class Gerente extends Usuario {
                 for (Usuario u : clientes) {
                     identificador  = u.getIdentificador();
                     if(identificador.equalsIgnoreCase("cliente")){
-                        System.out.println(u.getUsername());
+                        System.out.println("ID: " + u.getID() + " Username: "+ u.getUsername());
                     }
                 }
                 break;
         }
+    }
+
+    @Override
+    public int getID() {
+        return -1;
     }
 
 }

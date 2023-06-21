@@ -134,4 +134,11 @@ public class Cliente extends Usuario {
     private boolean datosCompletos() {
         return (!nombre.isBlank() && !numTelefono.isBlank() && !correoElectronico.isBlank());
     }
+
+    @Override
+    public int getID() {
+        return id;
+    }
+    
+    
 }
