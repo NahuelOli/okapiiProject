@@ -10,12 +10,12 @@ public class BaseDeUsuarios {
 
     private ArrayList<Usuario> u;
     private int idSetter;
-
+    
     public BaseDeUsuarios() {
         u = new ArrayList<>();
         idSetter = 0;
-    }
-
+    } 
+    
     public boolean estaVacia() {
         return u.isEmpty();
     }
@@ -64,7 +64,7 @@ public class BaseDeUsuarios {
     }
 
     void crearUsuarioGerente(String user, String password) {
-        Usuario usuarioEntrante = new Gerente(user, password);
+        Usuario usuarioEntrante = new Gerente(user, password, u);
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
