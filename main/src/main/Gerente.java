@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,9 +12,11 @@ import java.util.Scanner;
  * @author SirLucho
  */
 public class Gerente extends Usuario {
-
-    public Gerente(String username, String password) {
-        super(username, password);
+    private ArrayList<Usuario> clientes;
+    
+    public Gerente(String username, String password, String identificador, ArrayList clientes) {
+        super(username, password, identificador);
+        this.clientes = clientes;
     }
 
     @Override
@@ -39,8 +42,12 @@ public class Gerente extends Usuario {
                 break;
             case "1":
                 System.out.println("Cargando clientes...");
-                for (int i = 0; i < 10; i++) {
-
+                String identificador;
+                for (Usuario u : clientes) {
+                    identificador  = u.getIdentificador();
+                    if(identificador.equalsIgnoreCase("cliente")){
+                        System.out.println(u.getUsername());
+                    }
                 }
                 break;
         }

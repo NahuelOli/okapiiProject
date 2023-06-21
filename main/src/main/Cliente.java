@@ -19,8 +19,8 @@ public class Cliente extends Usuario {
     private String correoElectronico;
     private String numTelefono;
 
-    public Cliente(String username, String password, int id) {
-        super(username, password);
+    public Cliente(String username, String password, int id, String identificador) {
+        super(username, password, identificador);
         this.id = id;
         proyectos = new ArrayList<>();
         nombre = "";

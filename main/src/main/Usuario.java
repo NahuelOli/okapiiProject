@@ -11,11 +11,13 @@ public abstract class Usuario {
     private String username;
     private String password;
     private boolean estaLogueado;
+    private String identificador;
     private String nombre;
 
-    public Usuario(String username, String password) {
+    public Usuario(String username, String password, String identificador) {
         this.username = username;
         this.password = password;
+        this.identificador = identificador;
         estaLogueado = false;
     }
 
@@ -25,6 +27,10 @@ public abstract class Usuario {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getIdentificador() {
+        return identificador;
     }
 
     public boolean estaLogueado() {

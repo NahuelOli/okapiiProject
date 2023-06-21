@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import java.util.ArrayList;
@@ -57,21 +53,21 @@ public class BaseDeUsuarios {
 
     public void crearUsuarioCliente(String user, String password) {
         idSetter++;
-        Usuario usuarioEntrante = new Cliente(user, password, idSetter);
+        Usuario usuarioEntrante = new Cliente(user, password, idSetter, "cliente");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }
 
     void crearUsuarioGerente(String user, String password) {
-        Usuario usuarioEntrante = new Gerente(user, password);
+        Usuario usuarioEntrante = new Gerente(user, password, "gerente", u);
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }
 
     void crearUsuarioAdministrador(String user, String password) {
-        Usuario usuarioEntrante = new Administrador(user, password);
+        Usuario usuarioEntrante = new Administrador(user, password, u, "admin");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
