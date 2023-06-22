@@ -6,12 +6,12 @@ public class BaseDeUsuarios {
 
     private ArrayList<Usuario> u;
     private int idSetter;
-    
+
     public BaseDeUsuarios() {
         u = new ArrayList<>();
         idSetter = 0;
-    } 
-    
+    }
+
     public boolean estaVacia() {
         return u.isEmpty();
     }

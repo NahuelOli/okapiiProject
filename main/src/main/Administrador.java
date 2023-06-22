@@ -27,12 +27,12 @@ public class Administrador extends Usuario {
 
                 opcion = scan.nextLine();
                 hacerOpcion(opcion);
-            } while (( estaLogueado() ));
+            } while ((estaLogueado()));
         }
     }
-    
-    public void hacerOpcion(String opcion){
-        switch (opcion){
+
+    public void hacerOpcion(String opcion) {
+        switch (opcion) {
             case "0":
                 super.seDeslogueo();
                 break;

@@ -1,4 +1,5 @@
 package main;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +7,7 @@ public class Sistema {
 
     private BaseDeUsuarios users;
     private ArrayList<Desarrollador> desarrolladores;
-    
+
     public Sistema() {
         users = new BaseDeUsuarios();
         desarrolladores = new ArrayList<>();

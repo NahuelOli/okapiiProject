@@ -62,8 +62,6 @@ public abstract class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
 
     public boolean sonIgualesUsers(String username) {
         return this.username.equalsIgnoreCase(username);
@@ -74,5 +72,6 @@ public abstract class Usuario {
     }
 
     public abstract int getID();
+
     public abstract void verOpciones();
 }

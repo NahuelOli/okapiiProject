@@ -140,5 +140,10 @@ public class Cliente extends Usuario {
         return id;
     }
     
-    
+    public String addProyecto(){
+        Scanner scan = new Scanner(System.in);
+        String descripcion = scan.nextLine();
+        return descripcion;
+    }
+
 }

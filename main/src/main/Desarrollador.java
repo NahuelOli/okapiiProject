@@ -1,6 +1,7 @@
 package main;
 
 public class Desarrollador {
+
     private String nombre;
 
     public Desarrollador(String nombre) {
@@ -10,5 +11,5 @@ public class Desarrollador {
     public String getNombre() {
         return nombre;
     }
-    
+
 }
