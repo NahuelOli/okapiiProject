@@ -85,7 +85,8 @@ public class Sistema {
         }
         return userABuscar;
     }
-    public void registrarUsuarioCliente() {
+
+    private void registrarUsuarioCliente() {
         String user;
         String password;
         Scanner scan = new Scanner(System.in);

@@ -101,10 +101,17 @@ public class Cliente extends Usuario {
                 System.out.println("Fecha de inicio: " + p.getFecha());
                 System.out.println("Descripcion: " + p.getDescripcion());
                 System.out.println("Presupuesto: " + p.getPresupuesto());
-                if(p.getEstado() == false)
+                if (p.tieneDesarrolladores()) {
+                    p.mostrarDesarrolladores();
+                } else {
+                    System.out.println("El proyecto no tiene desarrolladores asignados.");
+                }
+
+                if (p.getEstado() == false) {
                     System.out.println("Estado: " + p.estaSinFinalizar());
-                else
+                } else {
                     System.out.println("Estado: " + p.estaFinalizado());
+                }
             }
         } else {
             System.out.println("No tienes proyectos!");

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class BaseDeUsuarios {
 
     private ArrayList<Usuario> u;
-    private int idSetter;
+    //private int idSetter;
 
     public BaseDeUsuarios() {
         u = new ArrayList<>();
-        idSetter = 0;
+        //   idSetter = 0;
     }
 
     public boolean estaVacia() {
@@ -52,22 +52,22 @@ public class BaseDeUsuarios {
     }
 
     public void crearUsuarioCliente(String user, String password) {
-        idSetter++;
-        Usuario usuarioEntrante = new Cliente(user, password, idSetter, "cliente");
+        //idSetter++;
+        Cliente usuarioEntrante = new Cliente(user, password, u.size() + 1, "cliente");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }
 
-    void crearUsuarioGerente(String user, String password) {
-        Usuario usuarioEntrante = new Gerente(user, password, "gerente", u);
+    public void crearUsuarioGerente(String user, String password) {
+        Gerente usuarioEntrante = new Gerente(user, password, "gerente", u);
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }
 
-    void crearUsuarioAdministrador(String user, String password) {
-        Usuario usuarioEntrante = new Administrador(user, password, u, "admin");
+    public void crearUsuarioAdministrador(String user, String password) {
+        Administrador usuarioEntrante = new Administrador(user, password, u, "admin");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }

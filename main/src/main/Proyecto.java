@@ -2,6 +2,7 @@ package main;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 class Proyecto {
 
@@ -11,6 +12,7 @@ class Proyecto {
     private String fecha;
     private String nombre;
     private String descripcion;
+    private ArrayList<Desarrollador> desarrolladores;
 
     public Proyecto(String nombre, String descripcion, String presupuesto) {
         this.nombre = nombre;
@@ -18,6 +20,7 @@ class Proyecto {
         this.presupuesto = presupuesto;
         estaFinalizado = false;
         this.fecha = asignarFecha();
+        desarrolladores = new ArrayList<>();
     }
 
     private String asignarFecha() {
@@ -26,10 +29,11 @@ class Proyecto {
 
         return fecha.format(formatObj);
     }
-    
-    public boolean getEstado(){
+
+    public boolean getEstado() {
         return estaFinalizado;
     }
+
     public String estaSinFinalizar() {
         estado = "Sin finalizar";
         return estado;
@@ -47,13 +51,23 @@ class Proyecto {
     public String getDescripcion() {
         return descripcion;
     }
-    
-    public String getPresupuesto(){
+
+    public String getPresupuesto() {
         return presupuesto;
     }
-    
-    public String getFecha(){
+
+    public String getFecha() {
         return fecha;
     }
-    
+
+    public boolean tieneDesarrolladores() {
+        return !desarrolladores.isEmpty();
+    }
+
+    public void mostrarDesarrolladores() {
+        for (Desarrollador dev : desarrolladores) {
+            dev.mostrarInformacion();
+        }
+    }
+
 }
