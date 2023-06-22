@@ -6,14 +6,13 @@ import java.time.format.DateTimeFormatter;
 class Proyecto {
 
     private String estado;
-    private double presupuesto;
+    private String presupuesto;
     private boolean estaFinalizado;
     private String fecha;
     private String nombre;
     private String descripcion;
 
-    public Proyecto(double presupuesto, String nombre, String descripcion) {
-        estado = estaEnAprobacion();
+    public Proyecto(String nombre, String descripcion, String presupuesto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.presupuesto = presupuesto;
@@ -27,32 +26,34 @@ class Proyecto {
 
         return fecha.format(formatObj);
     }
-
-    private String estaEnAprobacion() {
-        estado = "En espera de aprobacion.";
+    
+    public boolean getEstado(){
+        return estaFinalizado;
+    }
+    public String estaSinFinalizar() {
+        estado = "Sin finalizar";
         return estado;
     }
 
-    private String estaSinFinalizar() {
-        estado = "Sin finalizar.";
-        return estado;
-    }
-
-    private String estaFinalizado() {
+    public String estaFinalizado() {
         estado = "Finalizado.";
-        estaFinalizado = true;
         return estado;
     }
 
-    private void mostrarEstado() {
-        System.out.println("Estado del proyecto: " + estado);
+    public String getNombre() {
+        return nombre;
     }
 
-    private void mostrarNombre() {
-        System.out.println(nombre);
+    public String getDescripcion() {
+        return descripcion;
     }
-
-    private void mostrarDescripcion() {
-        System.out.println(descripcion);
+    
+    public String getPresupuesto(){
+        return presupuesto;
     }
+    
+    public String getFecha(){
+        return fecha;
+    }
+    
 }

@@ -55,8 +55,9 @@ public class Cliente extends Usuario {
         String opcion;
         do {
             System.out.println("1 - Ver proyectos");
-            System.out.println("2 - Cambiar password");
-            System.out.println("3 - Ver mis datos");
+            System.out.println("2 - Agregar proyecto");
+            System.out.println("3 - Cambiar password");
+            System.out.println("4 - Ver mis datos");
             System.out.println("0 - Cerrar sesion");
             System.out.println("Elige una opcion: ");
 
@@ -75,9 +76,12 @@ public class Cliente extends Usuario {
                 verProyectos();
                 break;
             case "2":
-                super.cambiarPassword();
+                addProyecto();
                 break;
             case "3":
+                super.cambiarPassword();
+                break;
+            case "4":
                 if (!datosCompletos()) {
                     verDatos();
                 } else {
@@ -92,9 +96,18 @@ public class Cliente extends Usuario {
 
     private void verProyectos() {
         if (!proyectos.isEmpty()) {
-
+            for (Proyecto p : proyectos) {
+                System.out.println("Titulo: " + p.getNombre());
+                System.out.println("Fecha de inicio: " + p.getFecha());
+                System.out.println("Descripcion: " + p.getDescripcion());
+                System.out.println("Presupuesto: " + p.getPresupuesto());
+                if(p.getEstado() == false)
+                    System.out.println("Estado: " + p.estaSinFinalizar());
+                else
+                    System.out.println("Estado: " + p.estaFinalizado());
+            }
         } else {
-            System.out.println("No tienes proyectos activos!");
+            System.out.println("No tienes proyectos!");
         }
     }
 
@@ -139,11 +152,18 @@ public class Cliente extends Usuario {
     public int getID() {
         return id;
     }
-    
-    public String addProyecto(){
+
+    public void addProyecto() {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Ingrese a continuacion el titulo de su proyecto: ");
+        String titulo = scan.nextLine();
+        System.out.println("Ingrese a continuacion la descripcion de su proyecto: ");
         String descripcion = scan.nextLine();
-        return descripcion;
+        System.out.println("Ingrese a continuacion el presupuesto estimado para su proyecto: ");
+        String presupuesto = scan.nextLine();
+        Proyecto proyecto = new Proyecto(titulo, descripcion, presupuesto);
+        proyectos.add(proyecto);
+
     }
 
 }

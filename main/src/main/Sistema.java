@@ -66,37 +66,25 @@ public class Sistema {
         String password;
         Usuario userABuscar = null;
         Scanner scan = new Scanner(System.in);
-        {
-            System.out.println("Ingrese un nombre de usuario: ");
-            user = scan.nextLine();
-            System.out.println("Ingrese una password: ");
-            password = scan.nextLine();
-            userABuscar = users.buscarUsuario(user);
+        System.out.println("Ingrese un nombre de usuario: ");
+        user = scan.nextLine();
+        System.out.println("Ingrese una password: ");
+        password = scan.nextLine();
+        userABuscar = users.buscarUsuario(user);
 
-            if (userABuscar != null) {
-                if (userABuscar.sonIgualesPasswords(password)) {
-                    userABuscar.seLogueo();
-                    System.out.println("Iniciaste sesion con exito.");
-                } else {
-                    userABuscar = null;
-                }
+        if (userABuscar != null) {
+            if (userABuscar.sonIgualesPasswords(password)) {
+                userABuscar.seLogueo();
+                System.out.println("Iniciaste sesion con exito.");
+            } else {
+                userABuscar = null;
             }
-            else
-            {
-                System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
-            }
-//        }
-//        catch(NullPointerException e)
-//        {
-//            arrancar();
-//            System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
-//        }
-//        finally
-//        {
-            return userABuscar;
-//        }
+        } else {
+            System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
+            arrancar();
+        }
+        return userABuscar;
     }
-
     public void registrarUsuarioCliente() {
         String user;
         String password;
