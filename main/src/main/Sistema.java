@@ -1,6 +1,5 @@
 package main;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Sistema {
@@ -48,26 +47,44 @@ public class Sistema {
         String password;
         Usuario userABuscar = null;
         Scanner scan = new Scanner(System.in);
-        if (users.estaVacia()) {
-            System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
-        } else {
-            System.out.println("Ingrese un nombre de usuario: ");
-            user = scan.nextLine();
-            userABuscar = users.buscarUsuario(user);
-            if (userABuscar != null) {
-                System.out.println("Ingrese una password: ");
-                password = scan.nextLine();
-                if (userABuscar.sonIgualesPasswords(password)) {
-                    userABuscar.seLogueo();
-                    System.out.println("Iniciaste sesion  con exito.");
-                } else {
-                    System.out.println("Password incorrecto.");
+//        try
+//        {
+            if (!users.estaVacia()) 
+            {
+                System.out.println("Ingrese un nombre de usuario: ");
+                user = scan.nextLine();
+                userABuscar = users.buscarUsuario(user);
+                if (userABuscar != null) 
+                {
+                    System.out.println("Ingrese una password: ");
+                    password = scan.nextLine();
+                    if (userABuscar.sonIgualesPasswords(password)) 
+                    {
+                        userABuscar.seLogueo();
+                        System.out.println("Iniciaste sesion  con exito.");
+                    } else 
+                    {
+                        System.out.println("Password incorrecto.");
+                    }
+                } else 
+                {
+                    System.out.println("Ese usuario no existe.");
                 }
-            } else {
-                System.out.println("Ese usuario no existe.");
             }
-        }
-        return userABuscar;
+            else
+            {
+                System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
+            }
+//        }
+//        catch(NullPointerException e)
+//        {
+//            arrancar();
+//            System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
+//        }
+//        finally
+//        {
+            return userABuscar;
+//        }
     }
 
     public void registrarUsuario() {
