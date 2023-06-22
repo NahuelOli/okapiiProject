@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import java.util.ArrayList;
@@ -12,12 +8,11 @@ import java.util.Scanner;
  * @author SirLucho
  */
 public class Gerente extends Usuario {
-    
     private ArrayList<Usuario> clientes;
-    public Gerente(String username, String password, ArrayList clientes) {
-        super(username, password);
+    
+    public Gerente(String username, String password, String identificador, ArrayList clientes) {
+        super(username, password, identificador);
         this.clientes = clientes;
-        
     }
 
     @Override
@@ -43,11 +38,20 @@ public class Gerente extends Usuario {
                 break;
             case "1":
                 System.out.println("Cargando clientes...");
-                for (Usuario c:clientes) {
-                    System.out.println("Nombre: "+c.getUsername());
+                String identificador;
+                for (Usuario u : clientes) {
+                    identificador  = u.getIdentificador();
+                    if(identificador.equalsIgnoreCase("cliente")){
+                        System.out.println("ID: " + u.getID() + " Username: "+ u.getUsername());
+                    }
                 }
                 break;
         }
+    }
+
+    @Override
+    public int getID() {
+        return -1;
     }
 
 }

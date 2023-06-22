@@ -19,8 +19,8 @@ public class Cliente extends Usuario {
     private String correoElectronico;
     private String numTelefono;
 
-    public Cliente(String username, String password, int id) {
-        super(username, password);
+    public Cliente(String username, String password, int id, String identificador) {
+        super(username, password, identificador);
         this.id = id;
         proyectos = new ArrayList<>();
         nombre = "";
@@ -49,7 +49,6 @@ public class Cliente extends Usuario {
         }
     }
 
-    
     @Override
     public void verOpciones() {
         Scanner scan = new Scanner(System.in);
@@ -135,4 +134,11 @@ public class Cliente extends Usuario {
     private boolean datosCompletos() {
         return (!nombre.isBlank() && !numTelefono.isBlank() && !correoElectronico.isBlank());
     }
+
+    @Override
+    public int getID() {
+        return id;
+    }
+    
+    
 }
