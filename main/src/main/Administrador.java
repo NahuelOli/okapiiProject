@@ -1,21 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
-/**
- *
- * @author SirLucho
- */
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Administrador extends Usuario {
 
-    public Administrador(String username, String password) {
-        super(username, password);
+    private ArrayList<Usuario> usuarios;
+
+    public Administrador(String username, String password, ArrayList usuarios, String identificador) {
+        super(username, password, identificador);
+        this.usuarios = usuarios;
     }
 
     public void verOpciones() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        {
+            Scanner scan = new Scanner(System.in);
+            String opcion;
+            do {
+
+                System.out.println("1 - Registrar cliente.");
+                System.out.println("2 - Registrar gerente.");
+                System.out.println("3 - Registrar desarrollador.");
+                System.out.println("4 - .");
+                System.out.println("0 - Cerrar sesion.");
+                System.out.println("Elige una opcion: ");
+
+                opcion = scan.nextLine();
+                hacerOpcion(opcion);
+            } while ((estaLogueado()));
+        }
+    }
+
+    public void hacerOpcion(String opcion) {
+        switch (opcion) {
+            case "0":
+                super.seDeslogueo();
+                break;
+            case "1":
+                break;
+        }
+    }
+
+    @Override
+    public int getID() {
+        return -1;
     }
 
 }
