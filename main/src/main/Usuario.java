@@ -76,6 +76,5 @@ public abstract class Usuario {
     public abstract void verOpciones();
 
     public abstract void addProyecto();
-    
-}
 
+}

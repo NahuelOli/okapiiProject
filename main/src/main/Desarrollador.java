@@ -12,7 +12,7 @@ public class Desarrollador extends Usuario {
         super(nombre, password, "Desarrollador");
         this.habilidades = habilidades;
         estaDisponible = true;
-        
+
     }
 
     public boolean isEstaDisponible() {
@@ -22,7 +22,7 @@ public class Desarrollador extends Usuario {
     public void setEstaDisponible(boolean estaDisponible) {
         this.estaDisponible = estaDisponible;
     }
-    
+
     public String getNombre() {
         return super.getUsername();
     }

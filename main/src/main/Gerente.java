@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Gerente extends Usuario {
 
     private ArrayList<Cliente> clientes;
-    private ArrayList<Desarrollador>  desarrolladores;
+    private ArrayList<Desarrollador> desarrolladores;
 
     public Gerente(String username, String password, String identificador, ArrayList clientes) {
         super(username, password, identificador);
@@ -52,12 +52,12 @@ public class Gerente extends Usuario {
                 }
                 System.out.println("Ingrese un ID de cliente: ");
                 opcion = scan.nextLine();
-                for (Usuario u :clientes) {
+                for (Usuario u : clientes) {
                     identificador = u.getIdentificador();
-                    if(idString.equalsIgnoreCase("-1")){
+                    if (idString.equalsIgnoreCase("-1")) {
                         if (identificador.equalsIgnoreCase("cliente")) {
                             String num = Integer.toString(u.getID());
-                            if(opcion.equalsIgnoreCase(num)){
+                            if (opcion.equalsIgnoreCase(num)) {
                                 idString = num;
                                 idNum = Integer.parseInt(num);
                                 System.out.println("ID encontrado, nombre del cliente: " + u.getUsername());
@@ -67,10 +67,10 @@ public class Gerente extends Usuario {
                         }
                     }
                 }
-                
-                if(idString.equalsIgnoreCase("-1"))
+
+                if (idString.equalsIgnoreCase("-1")) {
                     System.out.println("El ID de cliente ingresado no existe.");
-                    
+                }
 
                 break;
         }

@@ -128,20 +128,20 @@ public class Administrador extends Usuario {
 
         //System.out.println("Ingrese la contrasena de Gerente: ");
         //if (laClave.equals(scan.nextLine())) {
-            System.out.println("Ingrese un nombre de usuario: ");
-            user = scan.nextLine();
-            System.out.println("Ingrese una password: ");
-            password = scan.nextLine();
+        System.out.println("Ingrese un nombre de usuario: ");
+        user = scan.nextLine();
+        System.out.println("Ingrese una password: ");
+        password = scan.nextLine();
 
-            if (chequearUsuario(user)) {
-                crearUsuarioGerente(user, password);
-            } else {
-                System.out.println("Ese usuario ya existe!");
-                System.out.println("Volviendo al menu principal...");
-            }
+        if (chequearUsuario(user)) {
+            crearUsuarioGerente(user, password);
+        } else {
+            System.out.println("Ese usuario ya existe!");
+            System.out.println("Volviendo al menu principal...");
+        }
         //} else {
-            //System.out.println("La contrasena ingresada es incorrecta.");
-            //System.out.println("Volviendo al menu principal...");
+        //System.out.println("La contrasena ingresada es incorrecta.");
+        //System.out.println("Volviendo al menu principal...");
         //}
     }
 
