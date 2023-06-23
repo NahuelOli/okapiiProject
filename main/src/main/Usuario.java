@@ -74,4 +74,8 @@ public abstract class Usuario {
     public abstract int getID();
 
     public abstract void verOpciones();
+
+    public abstract void addProyecto();
+    
 }
+

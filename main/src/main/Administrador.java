@@ -21,7 +21,6 @@ public class Administrador extends Usuario {
                 System.out.println("1 - Registrar cliente.");
                 System.out.println("2 - Registrar gerente.");
                 System.out.println("3 - Registrar desarrollador.");
-                System.out.println("4 - .");
                 System.out.println("0 - Cerrar sesion.");
                 System.out.println("Elige una opcion: ");
 
@@ -124,11 +123,11 @@ public class Administrador extends Usuario {
     private void registrarUsuarioGerente() {
         String user;
         String password;
-        String laClave = "Gerent3$";
+        //String laClave = "Gerent3$";
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Ingrese la contrasena de Gerente: ");
-        if (laClave.equals(scan.nextLine())) {
+        //System.out.println("Ingrese la contrasena de Gerente: ");
+        //if (laClave.equals(scan.nextLine())) {
             System.out.println("Ingrese un nombre de usuario: ");
             user = scan.nextLine();
             System.out.println("Ingrese una password: ");
@@ -140,10 +139,10 @@ public class Administrador extends Usuario {
                 System.out.println("Ese usuario ya existe!");
                 System.out.println("Volviendo al menu principal...");
             }
-        } else {
-            System.out.println("La contrasena ingresada es incorrecta.");
-            System.out.println("Volviendo al menu principal...");
-        }
+        //} else {
+            //System.out.println("La contrasena ingresada es incorrecta.");
+            //System.out.println("Volviendo al menu principal...");
+        //}
     }
 
     private void registrarUsuarioDesarrollador() {
@@ -154,7 +153,7 @@ public class Administrador extends Usuario {
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Ingrese un nombre de usuario: ");
+        System.out.println("Ingrese el nombre del desarrollador: ");
         user = scan.nextLine();
         System.out.println("Ingrese una password: ");
         password = scan.nextLine();
@@ -178,6 +177,11 @@ public class Administrador extends Usuario {
         if (usuarios.add(dev)) {
             System.out.println("Usuario creado con exito.");
         }
+    }
+
+    @Override
+    public void addProyecto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

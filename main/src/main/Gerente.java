@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Gerente extends Usuario {
 
     private ArrayList<Cliente> clientes;
+    private ArrayList<Desarrollador>  desarrolladores;
 
     public Gerente(String username, String password, String identificador, ArrayList clientes) {
         super(username, password, identificador);
@@ -49,22 +50,27 @@ public class Gerente extends Usuario {
                         System.out.println("[" + u.getID() + "]  " + u.getUsername());
                     }
                 }
-                //System.out.println("Ingrese el ID del cliente al que le quiera cargar un proyecto: ");
-                //opcion = scan.nextLine();
-                //for (Cliente u :clientes) {
-                //    identificador = u.getIdentificador();
-                //    if(idString.equalsIgnoreCase("-1")){
-                //        if (identificador.equalsIgnoreCase("cliente")) {
-                //            String num = Integer.toString(u.getID());
-                //            if(opcion.equalsIgnoreCase(num)){
-                //                idNum = Integer.parseInt(num);
-                //                u.get().addProyecto();
-                //            }
-                //        }
-                //    }
-                //}
-                //if(idString.equalsIgnoreCase("-1"))
-                //    System.out.println("El ID de cliente ingresado no existe.");
+                System.out.println("Ingrese un ID de cliente: ");
+                opcion = scan.nextLine();
+                for (Usuario u :clientes) {
+                    identificador = u.getIdentificador();
+                    if(idString.equalsIgnoreCase("-1")){
+                        if (identificador.equalsIgnoreCase("cliente")) {
+                            String num = Integer.toString(u.getID());
+                            if(opcion.equalsIgnoreCase(num)){
+                                idString = num;
+                                idNum = Integer.parseInt(num);
+                                System.out.println("ID encontrado, nombre del cliente: " + u.getUsername());
+                                u.addProyecto();
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                if(idString.equalsIgnoreCase("-1"))
+                    System.out.println("El ID de cliente ingresado no existe.");
+                    
 
                 break;
         }
@@ -73,6 +79,11 @@ public class Gerente extends Usuario {
     @Override
     public int getID() {
         return -1;
+    }
+
+    @Override
+    public void addProyecto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

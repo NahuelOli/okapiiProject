@@ -63,7 +63,11 @@ class Proyecto {
     public boolean tieneDesarrolladores() {
         return !desarrolladores.isEmpty();
     }
-
+    
+    public void setDesarrolladores(ArrayList desarrolladores){
+        this.desarrolladores = desarrolladores;
+    }
+    
     public void mostrarDesarrolladores() {
         for (Desarrollador dev : desarrolladores) {
             dev.mostrarInformacion();

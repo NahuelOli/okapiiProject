@@ -6,12 +6,23 @@ import java.util.Scanner;
 public class Desarrollador extends Usuario {
 
     private ArrayList<String> habilidades;
+    private boolean estaDisponible;
 
     public Desarrollador(String nombre, String password, ArrayList habilidades) {
         super(nombre, password, "Desarrollador");
         this.habilidades = habilidades;
+        estaDisponible = true;
+        
     }
 
+    public boolean isEstaDisponible() {
+        return estaDisponible;
+    }
+
+    public void setEstaDisponible(boolean estaDisponible) {
+        this.estaDisponible = estaDisponible;
+    }
+    
     public String getNombre() {
         return super.getUsername();
     }
@@ -57,5 +68,10 @@ public class Desarrollador extends Usuario {
                 break;
 
         }
+    }
+
+    @Override
+    public void addProyecto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

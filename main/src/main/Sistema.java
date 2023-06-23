@@ -40,13 +40,13 @@ public class Sistema {
                         }
                     }
                     break;
+                //case "2":
+                //    registrarUsuarioCliente();
+                //    break;
+                //case "3":
+                //    registrarUsuarioGerente();
+                //    break;
                 case "2":
-                    registrarUsuarioCliente();
-                    break;
-                case "3":
-                    registrarUsuarioGerente();
-                    break;
-                case "4":
                     registrarUsuarioAdmin();
                     break;
             }
@@ -55,9 +55,9 @@ public class Sistema {
 
     public void mostrarOpciones() {
         System.out.println("1 - Loguear usuario.");
-        System.out.println("2 - Registrarse como cliente.");
-        System.out.println("3 - Registrarse como Gerente.");
-        System.out.println("4 - Registrarse como Administrador.");
+        //System.out.println("2 - Registrarse como cliente.");
+        //System.out.println("3 - Registrarse como Gerente.");
+        System.out.println("2 - Registrarse como Administrador.");
         System.out.println("0 - Salir");
     }
 
@@ -131,10 +131,10 @@ public class Sistema {
     private void registrarUsuarioAdmin() {
         String user;
         String password;
-        String laClave = "Adm1n$";
+        String laClave = "1234";
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Ingrese la contrasena de Administrador: ");
+        System.out.println("Ingrese la clave de Administrador: ");
         if (laClave.equals(scan.nextLine())) {
             System.out.println("Ingrese un nombre de usuario: ");
             user = scan.nextLine();
