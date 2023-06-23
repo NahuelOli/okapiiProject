@@ -196,31 +196,52 @@ public class Administrador extends Usuario {
 
     private void asignarDesarrolladores() {
         String identificador;
-        //int num;
-        //String opcion;
+        int numProyecto, numDev;
+        String opcion;
+        Desarrollador dev;
 
-        //Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         for (Usuario u : usuarios) {
-            identificador = u.getIdentificador();
+            if(u instanceof Cliente){
+                Cliente cliente = (Cliente) u;
+                System.out.println("Cliente: " + cliente.getUsername());
+                if(cliente.tieneProyectos()){
+                    cliente.verTituloProyecto();
+                    System.out.println("Seleccione el proyecto al que quiere asignar un desarrollador ");
+                    opcion = scan.nextLine();
+                    numProyecto = Integer.parseInt(opcion);
+                    
+                    mostrarDesarrolladoresDisponibles();
+                    System.out.println("Ingrese el ID del desarrollador a asignar: ");
+                    opcion = scan.nextLine();
+                    numDev = Integer.parseInt(opcion);
+                    dev = devs.get(numDev);
+                    
+                    cliente.setDesarrollador(numProyecto, dev);
+                }else{
+                    System.out.println("No tiene proyectos.");
+                }
+            }
+            /*identificador = u.getIdentificador();
             if (identificador.equalsIgnoreCase("cliente") && u.tieneProyectos()) {
                 System.out.println("Cliente: " + u.getUsername());
                 u.verTituloProyecto(admin, devs);
-                //System.out.println("Desea asignar desarrolladores? [1]SI [2]NO");
-                //opcion = scan.nextLine();
-                //while (!opcion.equalsIgnoreCase("1") || !opcion.equalsIgnoreCase("2")) {
-                //    System.out.println("La opcion ingresada no es valida, intentelo de nuevo a continuacion: ");
-                //    opcion = scan.nextLine();
-                //}
-                //if (opcion.equalsIgnoreCase("1")) {
-                //    mostrarDesarrolladoresDisponibles();
-                //    System.out.println("Ingrese el ID del desarrollador a asignar: ");
-                //    opcion = scan.nextLine();
-                //    num = Integer.parseInt(opcion);
-                //    u.setDesarrollador(devs.get(num));
-                //} else {
-                //    System.out.println("no joya pa");
-                //}
-            }
+                System.out.println("Desea asignar desarrolladores? [1]SI [2]NO");
+                opcion = scan.nextLine();
+                while (!opcion.equalsIgnoreCase("1") || !opcion.equalsIgnoreCase("2")) {
+                    System.out.println("La opcion ingresada no es valida, intentelo de nuevo a continuacion: ");
+                    opcion = scan.nextLine();
+                }
+                if (opcion.equalsIgnoreCase("1")) {
+                    mostrarDesarrolladoresDisponibles();
+                    System.out.println("Ingrese el ID del desarrollador a asignar: ");
+                    opcion = scan.nextLine();
+                    num = Integer.parseInt(opcion);
+                    u.setDesarrollador(devs.get(num));
+                } else {
+                    System.out.println("no joya pa");
+                }
+            }*/
         }
     }
 
@@ -234,15 +255,10 @@ public class Administrador extends Usuario {
         return false;
     }
 
-    @Override
+    /*@Override
     public void setDesarrollador() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
-    }
-
-    @Override
-    public void verTituloProyecto(Administrador a, ArrayList b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    }*/
 
 }

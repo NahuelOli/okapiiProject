@@ -81,8 +81,6 @@ public abstract class Usuario {
 
     public abstract boolean tieneProyectos();
 
-    public abstract void verTituloProyecto(Administrador a, ArrayList b);
-
-    public abstract void setDesarrollador();
+    //public abstract void setDesarrollador();
 
 }

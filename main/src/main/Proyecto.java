@@ -69,13 +69,14 @@ class Proyecto {
     }
 
     public void setDesarrollador(Desarrollador dev) {
+        dev.setEstaDisponible(false);
         desarrolladores.add(dev);
     }
-
+    
     public void mostrarDesarrolladores() {
         System.out.println("Los desarrolladores a cargo del proyecto son: ");
         for (Desarrollador dev : desarrolladores) {
-            System.out.println(dev.getNombre());
+            System.out.println(desarrolladores.indexOf(dev) + ") "+dev.getNombre());
         }
     }
 
