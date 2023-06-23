@@ -68,8 +68,8 @@ class Proyecto {
         return !desarrolladores.isEmpty();
     }
 
-    public void setDesarrolladores(ArrayList desarrolladores) {
-        this.desarrolladores = desarrolladores;
+    public void setDesarrollador(Desarrollador dev) {
+        desarrolladores.add(dev);
     }
 
     public void mostrarDesarrolladores() {

@@ -26,5 +26,5 @@ public class Desarrollador {
     public String getNombre() {
         return nombre;
     }
-    
+
 }

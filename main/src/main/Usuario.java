@@ -4,6 +4,8 @@
  */
 package main;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Usuario {
@@ -76,5 +78,11 @@ public abstract class Usuario {
     public abstract void verOpciones();
 
     public abstract void addProyecto();
+
+    public abstract boolean tieneProyectos();
+
+    public abstract void verTituloProyecto(Administrador a, ArrayList b);
+
+    public abstract void setDesarrollador();
 
 }

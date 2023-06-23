@@ -94,7 +94,7 @@ public class Cliente extends Usuario {
         }
     }
 
-    private void verProyectos() {
+    public void verProyectos() {
         if (!proyectos.isEmpty()) {
             for (Proyecto p : proyectos) {
                 System.out.println("Titulo: " + p.getNombre());
@@ -175,4 +175,47 @@ public class Cliente extends Usuario {
 
     }
 
+    @Override
+    public boolean tieneProyectos() {
+        return !proyectos.isEmpty();
+    }
+
+    @Override
+    public void verTituloProyecto(Administrador administrador, ArrayList lista) {
+        Scanner scan = new Scanner(System.in);
+        String opcion;
+        int num;
+
+        if (tieneProyectos()) {
+            for (Proyecto p : proyectos) {
+                System.out.println("Titulo: " + p.getNombre());
+                if (p.tieneDesarrolladores()) {
+                    p.mostrarDesarrolladores();
+                } else {
+                    System.out.println("El proyecto no tiene desarrolladores asignados.");
+                    System.out.println("Desea asignar desarrolladores? [1]SI [2]NO");
+                    opcion = scan.nextLine();
+                    //while (!opcion.equalsIgnoreCase("1") || !opcion.equalsIgnoreCase("2")) {
+                    //    System.out.println("La opcion ingresada no es valida, intentelo de nuevo a continuacion: ");
+                    //    opcion = scan.nextLine();
+                    //}
+                    if (opcion.equalsIgnoreCase("1")) {
+                        administrador.mostrarDesarrolladoresDisponibles();
+                        System.out.println("Ingrese el ID del desarrollador a asignar: ");
+                        opcion = scan.nextLine();
+                        num = Integer.parseInt(opcion);
+                        p.setDesarrollador((Desarrollador) lista.get(num));
+                    } else {
+                        System.out.println("no joya pa");
+                    }
+
+                }
+            }
+        }
+    }
+
+    @Override
+    public void setDesarrollador() {
+
+    }
 }

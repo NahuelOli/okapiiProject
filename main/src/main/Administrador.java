@@ -7,6 +7,7 @@ public class Administrador extends Usuario {
 
     private ArrayList<Usuario> usuarios;
     private ArrayList<Desarrollador> devs;
+    private Administrador admin;
 
     public Administrador(String username, String password, ArrayList usuarios, ArrayList devs, String identificador) {
         super(username, password, identificador);
@@ -24,6 +25,7 @@ public class Administrador extends Usuario {
                 System.out.println("2 - Registrar gerente.");
                 System.out.println("3 - Registrar desarrollador.");
                 System.out.println("4 - Ver desarrolladores.");
+                System.out.println("5 - Asignar desarrolladores.");
                 System.out.println("0 - Cerrar sesion.");
                 System.out.println("Elige una opcion: ");
 
@@ -49,6 +51,9 @@ public class Administrador extends Usuario {
                 break;
             case "4":
                 mostrarDesarrolladoresDisponibles();
+                break;
+            case "5":
+                asignarDesarrolladores();
                 break;
         }
     }
@@ -180,17 +185,63 @@ public class Administrador extends Usuario {
             System.out.println("Usuario creado con exito.");
         }
     }
-    
-    public void mostrarDesarrolladoresDisponibles(){
-        for(Desarrollador dev : devs){
-            if(dev.getEstaDisponible()){
-                System.out.println("Desarrollador: " + dev.getNombre() + " esta disponible.");
+
+    public void mostrarDesarrolladoresDisponibles() {
+        for (Desarrollador dev : devs) {
+            if (dev.getEstaDisponible()) {
+                System.out.println("ID " + devs.indexOf(dev) + "  Desarrollador: " + dev.getNombre() + " esta disponible.");
+            }
+        }
+    }
+
+    private void asignarDesarrolladores() {
+        String identificador;
+        //int num;
+        //String opcion;
+
+        //Scanner scan = new Scanner(System.in);
+        for (Usuario u : usuarios) {
+            identificador = u.getIdentificador();
+            if (identificador.equalsIgnoreCase("cliente") && u.tieneProyectos()) {
+                System.out.println("Cliente: " + u.getUsername());
+                u.verTituloProyecto(admin, devs);
+                //System.out.println("Desea asignar desarrolladores? [1]SI [2]NO");
+                //opcion = scan.nextLine();
+                //while (!opcion.equalsIgnoreCase("1") || !opcion.equalsIgnoreCase("2")) {
+                //    System.out.println("La opcion ingresada no es valida, intentelo de nuevo a continuacion: ");
+                //    opcion = scan.nextLine();
+                //}
+                //if (opcion.equalsIgnoreCase("1")) {
+                //    mostrarDesarrolladoresDisponibles();
+                //    System.out.println("Ingrese el ID del desarrollador a asignar: ");
+                //    opcion = scan.nextLine();
+                //    num = Integer.parseInt(opcion);
+                //    u.setDesarrollador(devs.get(num));
+                //} else {
+                //    System.out.println("no joya pa");
+                //}
             }
         }
     }
 
     @Override
     public void addProyecto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean tieneProyectos() {
+        return false;
+    }
+
+    @Override
+    public void setDesarrollador() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+    }
+
+    @Override
+    public void verTituloProyecto(Administrador a, ArrayList b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

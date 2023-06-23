@@ -36,7 +36,7 @@ public class Sistema {
                             usuarioLocal = loguearUsuario();
                             usuarioLocal.verOpciones();
                         } catch (NullPointerException e) {
-                            System.out.println("Usuario o password incorrecto.");
+                            System.out.println("Usuario o password incorrecto puede ser pa.");
                         }
                     }
                     break;
