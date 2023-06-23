@@ -34,13 +34,17 @@ class Proyecto {
         return estaFinalizado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public String estaSinFinalizar() {
-        estado = "Sin finalizar";
+        setEstado("Sin finalizar");
         return estado;
     }
 
     public String estaFinalizado() {
-        estado = "Finalizado.";
+        setEstado("Finalizado");
         return estado;
     }
 
@@ -69,8 +73,9 @@ class Proyecto {
     }
 
     public void mostrarDesarrolladores() {
+        System.out.println("Los desarrolladores a cargo del proyecto son: ");
         for (Desarrollador dev : desarrolladores) {
-            dev.mostrarInformacion();
+            System.out.println(dev.getNombre());
         }
     }
 

@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class Administrador extends Usuario {
 
     private ArrayList<Usuario> usuarios;
+    private ArrayList<Desarrollador> devs;
 
-    public Administrador(String username, String password, ArrayList usuarios, String identificador) {
+    public Administrador(String username, String password, ArrayList usuarios, ArrayList devs, String identificador) {
         super(username, password, identificador);
         this.usuarios = usuarios;
+        this.devs = devs;
     }
 
     public void verOpciones() {
@@ -21,6 +23,7 @@ public class Administrador extends Usuario {
                 System.out.println("1 - Registrar cliente.");
                 System.out.println("2 - Registrar gerente.");
                 System.out.println("3 - Registrar desarrollador.");
+                System.out.println("4 - Ver desarrolladores.");
                 System.out.println("0 - Cerrar sesion.");
                 System.out.println("Elige una opcion: ");
 
@@ -44,7 +47,9 @@ public class Administrador extends Usuario {
             case "3":
                 registrarUsuarioDesarrollador();
                 break;
-
+            case "4":
+                mostrarDesarrolladoresDisponibles();
+                break;
         }
     }
 
@@ -147,7 +152,6 @@ public class Administrador extends Usuario {
 
     private void registrarUsuarioDesarrollador() {
         String user;
-        String password;
         String habilidad = "";
         ArrayList<String> habilidades = new ArrayList<>();
 
@@ -155,8 +159,6 @@ public class Administrador extends Usuario {
 
         System.out.println("Ingrese el nombre del desarrollador: ");
         user = scan.nextLine();
-        System.out.println("Ingrese una password: ");
-        password = scan.nextLine();
 
         if (chequearUsuario(user)) {
             while (!habilidad.equalsIgnoreCase("0")) {
@@ -166,16 +168,24 @@ public class Administrador extends Usuario {
                     habilidades.add(habilidad);
                 }
             }
-            crearUsuarioDesarrollador(user, password, habilidades);
+            crearUsuarioDesarrollador(user, habilidades);
         } else {
             System.out.println("Ese username ya esta en uso!");
         }
     }
 
-    private void crearUsuarioDesarrollador(String user, String password, ArrayList<String> habilidades) {
-        Desarrollador dev = new Desarrollador(user, password, habilidades);
-        if (usuarios.add(dev)) {
+    private void crearUsuarioDesarrollador(String user, ArrayList<String> habilidades) {
+        Desarrollador dev = new Desarrollador(user, habilidades);
+        if (devs.add(dev)) {
             System.out.println("Usuario creado con exito.");
+        }
+    }
+    
+    public void mostrarDesarrolladoresDisponibles(){
+        for(Desarrollador dev : devs){
+            if(dev.getEstaDisponible()){
+                System.out.println("Desarrollador: " + dev.getNombre() + " esta disponible.");
+            }
         }
     }
 
