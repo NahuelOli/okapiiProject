@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Gerente extends Usuario {
 
     private ArrayList<Cliente> clientes;
-    private ArrayList<Desarrollador>  desarrolladores;
+    private ArrayList<Desarrollador> desarrolladores;
 
     public Gerente(String username, String password, String identificador, ArrayList clientes) {
         super(username, password, identificador);

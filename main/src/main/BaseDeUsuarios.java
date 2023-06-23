@@ -3,12 +3,14 @@ package main;
 import java.util.ArrayList;
 
 public class BaseDeUsuarios {
-
+    
+    private ArrayList<Desarrollador> devs;
     private ArrayList<Usuario> u;
     //private int idSetter;
 
     public BaseDeUsuarios() {
         u = new ArrayList<>();
+        devs = new ArrayList<>();
         //   idSetter = 0;
     }
 
@@ -67,7 +69,7 @@ public class BaseDeUsuarios {
     }
 
     public void crearUsuarioAdministrador(String user, String password) {
-        Administrador usuarioEntrante = new Administrador(user, password, u, "admin");
+        Administrador usuarioEntrante = new Administrador(user, password, u, devs, "admin");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
