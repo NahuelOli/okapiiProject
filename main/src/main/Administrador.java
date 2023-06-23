@@ -7,7 +7,6 @@ public class Administrador extends Usuario {
 
     private ArrayList<Usuario> usuarios;
     private ArrayList<Desarrollador> devs;
-    private Administrador admin;
 
     public Administrador(String username, String password, ArrayList usuarios, ArrayList devs, String identificador) {
         super(username, password, identificador);
@@ -99,7 +98,6 @@ public class Administrador extends Usuario {
     }
 
     public void crearUsuarioCliente(String user, String password) {
-        //idSetter++;
         Cliente usuarioEntrante = new Cliente(user, password, usuarios.size() + 1, "cliente");
         if (usuarios.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
@@ -133,11 +131,8 @@ public class Administrador extends Usuario {
     private void registrarUsuarioGerente() {
         String user;
         String password;
-        //String laClave = "Gerent3$";
         Scanner scan = new Scanner(System.in);
 
-        //System.out.println("Ingrese la contrasena de Gerente: ");
-        //if (laClave.equals(scan.nextLine())) {
         System.out.println("Ingrese un nombre de usuario: ");
         user = scan.nextLine();
         System.out.println("Ingrese una password: ");
@@ -149,10 +144,6 @@ public class Administrador extends Usuario {
             System.out.println("Ese usuario ya existe!");
             System.out.println("Volviendo al menu principal...");
         }
-        //} else {
-        //System.out.println("La contrasena ingresada es incorrecta.");
-        //System.out.println("Volviendo al menu principal...");
-        //}
     }
 
     private void registrarUsuarioDesarrollador() {
@@ -202,46 +193,26 @@ public class Administrador extends Usuario {
 
         Scanner scan = new Scanner(System.in);
         for (Usuario u : usuarios) {
-            if(u instanceof Cliente){
+            if (u instanceof Cliente) {
                 Cliente cliente = (Cliente) u;
                 System.out.println("Cliente: " + cliente.getUsername());
-                if(cliente.tieneProyectos()){
+                if (cliente.tieneProyectos()) {
                     cliente.verTituloProyecto();
                     System.out.println("Seleccione el proyecto al que quiere asignar un desarrollador ");
                     opcion = scan.nextLine();
                     numProyecto = Integer.parseInt(opcion);
-                    
+
                     mostrarDesarrolladoresDisponibles();
                     System.out.println("Ingrese el ID del desarrollador a asignar: ");
                     opcion = scan.nextLine();
                     numDev = Integer.parseInt(opcion);
                     dev = devs.get(numDev);
-                    
+
                     cliente.setDesarrollador(numProyecto, dev);
-                }else{
+                } else {
                     System.out.println("No tiene proyectos.");
                 }
             }
-            /*identificador = u.getIdentificador();
-            if (identificador.equalsIgnoreCase("cliente") && u.tieneProyectos()) {
-                System.out.println("Cliente: " + u.getUsername());
-                u.verTituloProyecto(admin, devs);
-                System.out.println("Desea asignar desarrolladores? [1]SI [2]NO");
-                opcion = scan.nextLine();
-                while (!opcion.equalsIgnoreCase("1") || !opcion.equalsIgnoreCase("2")) {
-                    System.out.println("La opcion ingresada no es valida, intentelo de nuevo a continuacion: ");
-                    opcion = scan.nextLine();
-                }
-                if (opcion.equalsIgnoreCase("1")) {
-                    mostrarDesarrolladoresDisponibles();
-                    System.out.println("Ingrese el ID del desarrollador a asignar: ");
-                    opcion = scan.nextLine();
-                    num = Integer.parseInt(opcion);
-                    u.setDesarrollador(devs.get(num));
-                } else {
-                    System.out.println("no joya pa");
-                }
-            }*/
         }
     }
 
@@ -254,11 +225,5 @@ public class Administrador extends Usuario {
     public boolean tieneProyectos() {
         return false;
     }
-
-    /*@Override
-    public void setDesarrollador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
-    }*/
 
 }

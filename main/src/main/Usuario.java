@@ -80,7 +80,4 @@ public abstract class Usuario {
     public abstract void addProyecto();
 
     public abstract boolean tieneProyectos();
-
-    //public abstract void setDesarrollador();
-
 }

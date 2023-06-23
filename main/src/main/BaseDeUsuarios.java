@@ -6,12 +6,10 @@ public class BaseDeUsuarios {
 
     private ArrayList<Desarrollador> devs;
     private ArrayList<Usuario> u;
-    //private int idSetter;
 
     public BaseDeUsuarios() {
         u = new ArrayList<>();
         devs = new ArrayList<>();
-        //   idSetter = 0;
     }
 
     public boolean estaVacia() {
@@ -54,7 +52,6 @@ public class BaseDeUsuarios {
     }
 
     public void crearUsuarioCliente(String user, String password) {
-        //idSetter++;
         Cliente usuarioEntrante = new Cliente(user, password, u.size() + 1, "cliente");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");

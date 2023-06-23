@@ -55,7 +55,6 @@ public class Cliente extends Usuario {
         String opcion;
         do {
             System.out.println("1 - Ver proyectos");
-            //System.out.println("2 - Agregar proyecto");
             System.out.println("2 - Cambiar password");
             System.out.println("3 - Ver mis datos");
             System.out.println("0 - Cerrar sesion");
@@ -75,9 +74,6 @@ public class Cliente extends Usuario {
             case "1":
                 verProyectos();
                 break;
-            //case "2":
-            //    addProyecto();
-            //    break;
             case "2":
                 super.cambiarPassword();
                 break;
@@ -183,7 +179,7 @@ public class Cliente extends Usuario {
     public void verTituloProyecto() {
         if (tieneProyectos()) {
             for (Proyecto p : proyectos) {
-                System.out.println("Titulo: " + p.getNombre());
+                System.out.println(proyectos.indexOf(p) + ")  Titulo: " + p.getNombre());
                 if (p.tieneDesarrolladores()) {
                     p.mostrarDesarrolladores();
                 }
@@ -195,9 +191,4 @@ public class Cliente extends Usuario {
         Proyecto proyectoABuscar = proyectos.get(numeroProyecto);
         proyectoABuscar.setDesarrollador(dev);
     }
-
-   /* @Override
-    public void setDesarrollador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
 }
