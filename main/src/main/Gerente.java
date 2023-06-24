@@ -1,5 +1,6 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,10 +8,9 @@ import java.util.Scanner;
  *
  * @author SirLucho
  */
-public class Gerente extends Usuario {
+public class Gerente extends Usuario implements Serializable {
 
-    private ArrayList<Cliente> clientes;
-    private ArrayList<Desarrollador> desarrolladores;
+    private ArrayList<Usuario> clientes;
 
     public Gerente(String username, String password, String identificador, ArrayList clientes) {
         super(username, password, identificador);
@@ -35,7 +35,6 @@ public class Gerente extends Usuario {
     public void hacerOpcion(String opcion) {
         Scanner scan = new Scanner(System.in);
         String idString = "-1";
-        int idNum;
         switch (opcion) {
             case "0":
                 System.out.println("Cerrando sesion...");
@@ -43,51 +42,31 @@ public class Gerente extends Usuario {
                 break;
             case "1":
                 System.out.println("Cargando clientes...");
-                String identificador;
                 for (Usuario u : clientes) {
-                    identificador = u.getIdentificador();
-                    if (identificador.equalsIgnoreCase("cliente")) {
-                        System.out.println("[" + u.getID() + "]  " + u.getUsername());
+                    if (u instanceof Cliente) {
+                        Cliente cliente = (Cliente) u;
+                        System.out.println("[" + cliente.getID() + "]  " + cliente.getUsername());
                     }
                 }
                 System.out.println("Ingrese un ID de cliente: ");
                 opcion = scan.nextLine();
                 for (Usuario u : clientes) {
-                    identificador = u.getIdentificador();
                     if (idString.equalsIgnoreCase("-1")) {
-                        if (identificador.equalsIgnoreCase("cliente")) {
-                            String num = Integer.toString(u.getID());
+                        if (u instanceof Cliente) {
+                            Cliente cliente = (Cliente) u;
+                            String num = Integer.toString(cliente.getID());
                             if (opcion.equalsIgnoreCase(num)) {
                                 idString = num;
-                                idNum = Integer.parseInt(num);
-                                System.out.println("ID encontrado, nombre del cliente: " + u.getUsername());
-                                u.addProyecto();
-                                break;
+                                System.out.println("ID encontrado, nombre del cliente: " + cliente.getUsername());
+                                cliente.addProyecto();
                             }
                         }
                     }
                 }
-
                 if (idString.equalsIgnoreCase("-1")) {
                     System.out.println("El ID de cliente ingresado no existe.");
                 }
-
                 break;
         }
-    }
-
-    @Override
-    public int getID() {
-        return -1;
-    }
-
-    @Override
-    public void addProyecto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean tieneProyectos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

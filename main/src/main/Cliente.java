@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
  *
  * @author SirLucho
  */
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements Serializable {
 
     private int id;
     private String nombre;
@@ -97,13 +98,11 @@ public class Cliente extends Usuario {
                 System.out.println("Fecha de inicio: " + p.getFecha());
                 System.out.println("Descripcion: " + p.getDescripcion());
                 System.out.println("Presupuesto: " + p.getPresupuesto());
-                System.out.println("");
                 if (p.tieneDesarrolladores()) {
                     p.mostrarDesarrolladores();
                 } else {
-                    System.out.println("El proyecto no tiene desarrolladores asignados.");
+                    System.out.println("El proyecto no tiene desarrolladores asignados.\n");
                 }
-
                 if (p.getEstado() == false) {
                     System.out.println("Estado: " + p.estaSinFinalizar());
                 } else {
@@ -111,7 +110,7 @@ public class Cliente extends Usuario {
                 }
             }
         } else {
-            System.out.println("No tienes proyectos!");
+            System.out.println("No tienes proyectos!\n");
         }
     }
 
@@ -121,9 +120,7 @@ public class Cliente extends Usuario {
         while (!opcion.equals("0") && !opcion.equals("1")) {
             System.out.println("ID: " + id);
             System.out.println("Proyectos activos: " + proyectos.size());
-
-            System.out.println("");
-            System.out.println("0 - Salir");
+            System.out.println("\n0 - Salir");
             System.out.println("1 - Completar datos");
 
             opcion = scan.nextLine();
@@ -142,8 +139,7 @@ public class Cliente extends Usuario {
             System.out.println("Nombre: " + nombre);
             System.out.println("Correo electronico: " + correoElectronico);
             System.out.println("Numero de telefono: " + numTelefono);
-            System.out.println("");
-            System.out.println("0 - Salir");
+            System.out.println("\n0 - Salir");
             opcion = scan.nextLine();
         }
     }
@@ -152,26 +148,23 @@ public class Cliente extends Usuario {
         return (!nombre.isBlank() && !numTelefono.isBlank() && !correoElectronico.isBlank());
     }
 
-    @Override
     public int getID() {
         return id;
     }
 
-    @Override
     public void addProyecto() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Ingrese a continuacion el titulo de su proyecto: ");
+        System.out.println("Ingrese el nombre del proyecto: ");
         String titulo = scan.nextLine();
-        System.out.println("Ingrese a continuacion la descripcion de su proyecto: ");
+        System.out.println("Ingrese la descripcion del proyecto: ");
         String descripcion = scan.nextLine();
-        System.out.println("Ingrese a continuacion el presupuesto estimado para su proyecto: ");
+        System.out.println("Ingrese el presupuesto estimado para el proyecto: ");
         String presupuesto = scan.nextLine();
         Proyecto proyecto = new Proyecto(titulo, descripcion, presupuesto);
         proyectos.add(proyecto);
-
+        System.out.println("Proyecto añadido con exito");
     }
 
-    @Override
     public boolean tieneProyectos() {
         return !proyectos.isEmpty();
     }

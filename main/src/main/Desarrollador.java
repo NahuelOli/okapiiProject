@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Desarrollador {
+public class Desarrollador implements Serializable {
 
     private ArrayList<String> habilidades;
     private String nombre;

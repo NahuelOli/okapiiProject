@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BaseDeUsuarios {
+public class BaseDeUsuarios implements Serializable {
 
     private ArrayList<Desarrollador> devs;
     private ArrayList<Usuario> u;
@@ -52,21 +53,21 @@ public class BaseDeUsuarios {
     }
 
     public void crearUsuarioCliente(String user, String password) {
-        Cliente usuarioEntrante = new Cliente(user, password, u.size() + 1, "cliente");
+        Cliente usuarioEntrante = new Cliente(user, password, u.size() + 1, "Cliente");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }
 
     public void crearUsuarioGerente(String user, String password) {
-        Gerente usuarioEntrante = new Gerente(user, password, "gerente", u);
+        Gerente usuarioEntrante = new Gerente(user, password, "Gerente", u);
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }
     }
 
     public void crearUsuarioAdministrador(String user, String password) {
-        Administrador usuarioEntrante = new Administrador(user, password, u, devs, "admin");
+        Administrador usuarioEntrante = new Administrador(user, password, u, devs, "Administrador");
         if (u.add(usuarioEntrante)) {
             System.out.println("Usuario creado con exito.");
         }

@@ -1,10 +1,11 @@
 package main;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-class Proyecto {
+class Proyecto implements Serializable {
 
     private String estado;
     private String presupuesto;

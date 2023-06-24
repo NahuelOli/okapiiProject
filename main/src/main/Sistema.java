@@ -1,16 +1,15 @@
 package main;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Sistema {
+public class Sistema implements Serializable {
 
     private BaseDeUsuarios users;
-    private ArrayList<Desarrollador> desarrolladores;
 
     public Sistema() {
         users = new BaseDeUsuarios();
-        desarrolladores = new ArrayList<>();
+
     }
 
     public void arrancar() {
@@ -36,7 +35,7 @@ public class Sistema {
                             usuarioLocal = loguearUsuario();
                             usuarioLocal.verOpciones();
                         } catch (NullPointerException e) {
-                            System.out.println("Usuario o password incorrecto puede ser pa.");
+                            System.out.println("Usuario o clave incorrecto.");
                         }
                     }
                     break;
@@ -48,7 +47,7 @@ public class Sistema {
     }
 
     public void mostrarOpciones() {
-        System.out.println("1 - Loguear usuario.");
+        System.out.println("\n\n1 - Loguear usuario.");
         System.out.println("2 - Registrarse como Administrador.");
         System.out.println("0 - Salir");
     }
@@ -60,7 +59,7 @@ public class Sistema {
         Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese un nombre de usuario: ");
         user = scan.nextLine();
-        System.out.println("Ingrese una password: ");
+        System.out.println("Ingrese una clave: ");
         password = scan.nextLine();
         userABuscar = users.buscarUsuario(user);
 
@@ -72,7 +71,7 @@ public class Sistema {
                 userABuscar = null;
             }
         } else {
-            System.out.println("No hay usuarios creados. Volviendo al menu de inicio.");
+            System.out.println("Usuario no encontrado.Volviendo al menu de inicio");
             arrancar();
         }
         return userABuscar;
@@ -84,11 +83,11 @@ public class Sistema {
         String laClave = "1234";
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Ingrese la clave de Administrador: ");
+        System.out.println("Ingrese la clave de ADMINISTRADOR: ");
         if (laClave.equals(scan.nextLine())) {
             System.out.println("Ingrese un nombre de usuario: ");
             user = scan.nextLine();
-            System.out.println("Ingrese una password: ");
+            System.out.println("Ingrese una clave: ");
             password = scan.nextLine();
 
             if (users.chequearUsuario(user)) {
@@ -98,9 +97,8 @@ public class Sistema {
                 System.out.println("Volviendo al menu principal...");
             }
         } else {
-            System.out.println("La contrasena ingresada es incorrecta.");
+            System.out.println("La clave ingresada es incorrecta.");
             System.out.println("Volviendo al menu principal...");
         }
     }
-
 }

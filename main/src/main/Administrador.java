@@ -1,9 +1,10 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Administrador extends Usuario {
+public class Administrador extends Usuario implements Serializable {
 
     private ArrayList<Usuario> usuarios;
     private ArrayList<Desarrollador> devs;
@@ -20,11 +21,12 @@ public class Administrador extends Usuario {
             String opcion;
             do {
 
-                System.out.println("1 - Registrar cliente.");
+                System.out.println("\n1 - Registrar cliente.");
                 System.out.println("2 - Registrar gerente.");
                 System.out.println("3 - Registrar desarrollador.");
-                System.out.println("4 - Ver desarrolladores.");
+                System.out.println("4 - Ver desarrolladores disponibles.");
                 System.out.println("5 - Asignar desarrolladores.");
+                System.out.println("6 - Ver todos los usuarios.");
                 System.out.println("0 - Cerrar sesion.");
                 System.out.println("Elige una opcion: ");
 
@@ -49,17 +51,29 @@ public class Administrador extends Usuario {
                 registrarUsuarioDesarrollador();
                 break;
             case "4":
-                mostrarDesarrolladoresDisponibles();
+                if (hayDesarrolladoresDisponibles()) {
+                    mostrarDesarrolladoresDisponibles();
+                } else {
+                    System.out.println("No hay desarrolladores disponibles.");
+                }
                 break;
             case "5":
                 asignarDesarrolladores();
                 break;
+            case "6":
+                verUsuarios();
+                break;
         }
     }
 
-    @Override
-    public int getID() {
-        return -1;
+    private void verUsuarios() {
+        for (Usuario u : usuarios) {
+            System.out.println("\n=========================");
+            System.out.println("\nNombre: " + u.getUsername());
+            System.out.println("Clave: " + u.getPassword());
+            System.out.println("Tipo: " + u.getIdentificador());
+
+        }
     }
 
     public boolean chequearUsuario(String user) {
@@ -116,9 +130,9 @@ public class Administrador extends Usuario {
         String password;
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Ingrese un nombre de usuario: ");
+        System.out.println("\nIngrese un nombre de usuario: ");
         user = scan.nextLine();
-        System.out.println("Ingrese una password: ");
+        System.out.println("Ingrese una clave: ");
         password = scan.nextLine();
 
         if (chequearUsuario(user)) {
@@ -133,9 +147,9 @@ public class Administrador extends Usuario {
         String password;
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Ingrese un nombre de usuario: ");
+        System.out.println("\nIngrese un nombre de usuario: ");
         user = scan.nextLine();
-        System.out.println("Ingrese una password: ");
+        System.out.println("Ingrese una clave: ");
         password = scan.nextLine();
 
         if (chequearUsuario(user)) {
@@ -166,7 +180,7 @@ public class Administrador extends Usuario {
             }
             crearUsuarioDesarrollador(user, habilidades);
         } else {
-            System.out.println("Ese username ya esta en uso!");
+            System.out.println("Ese desarrollador ya existe!");
         }
     }
 
@@ -180,50 +194,63 @@ public class Administrador extends Usuario {
     public void mostrarDesarrolladoresDisponibles() {
         for (Desarrollador dev : devs) {
             if (dev.getEstaDisponible()) {
-                System.out.println("ID " + devs.indexOf(dev) + "  Desarrollador: " + dev.getNombre() + " esta disponible.");
+                System.out.println("ID [" + devs.indexOf(dev) + "]   " + dev.getNombre());
             }
         }
+    }
+
+    public boolean hayDesarrolladoresDisponibles() {
+        boolean flag = false;
+        int i = 0;
+        Desarrollador dev;
+        do {
+            dev = devs.get(i);
+            i++;
+        } while (!dev.getEstaDisponible() && i < devs.size());
+
+        if (dev.getEstaDisponible()) {
+            flag = true;
+        }
+        return flag;
     }
 
     private void asignarDesarrolladores() {
-        String identificador;
-        int numProyecto, numDev;
-        String opcion;
-        Desarrollador dev;
+        if (hayDesarrolladoresDisponibles()) {
 
-        Scanner scan = new Scanner(System.in);
-        for (Usuario u : usuarios) {
-            if (u instanceof Cliente) {
-                Cliente cliente = (Cliente) u;
-                System.out.println("Cliente: " + cliente.getUsername());
-                if (cliente.tieneProyectos()) {
-                    cliente.verTituloProyecto();
-                    System.out.println("Seleccione el proyecto al que quiere asignar un desarrollador ");
-                    opcion = scan.nextLine();
-                    numProyecto = Integer.parseInt(opcion);
+            int numProyecto, numDev;
+            String opcion;
+            Desarrollador dev;
 
-                    mostrarDesarrolladoresDisponibles();
-                    System.out.println("Ingrese el ID del desarrollador a asignar: ");
-                    opcion = scan.nextLine();
-                    numDev = Integer.parseInt(opcion);
-                    dev = devs.get(numDev);
+            Scanner scan = new Scanner(System.in);
+            for (Usuario u : usuarios) {
+                if (u instanceof Cliente) {
+                    Cliente cliente = (Cliente) u;
+                    System.out.println("Cliente: " + cliente.getUsername());
 
-                    cliente.setDesarrollador(numProyecto, dev);
-                } else {
-                    System.out.println("No tiene proyectos.");
+                    if (cliente.tieneProyectos()) {
+                        try {
+                            cliente.verTituloProyecto();
+                            System.out.println("Seleccione el proyecto al que quiere asignar un desarrollador ");
+                            opcion = scan.nextLine();
+                            numProyecto = Integer.parseInt(opcion);
+                            mostrarDesarrolladoresDisponibles();
+                            System.out.println("Ingrese el ID del desarrollador a asignar: ");
+                            opcion = scan.nextLine();
+                            numDev = Integer.parseInt(opcion);
+                            dev = devs.get(numDev);
+                            cliente.setDesarrollador(numProyecto, dev);
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println("Ingresaste un ID fuera de parametro.");
+                        }
+                    } else {
+                        System.out.println("El cliente no tiene proyectos.");
+                    }
                 }
             }
+        } else {
+            System.out.println("No hay desarrolladores disponibles!");
         }
-    }
 
-    @Override
-    public void addProyecto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean tieneProyectos() {
-        return false;
     }
 
 }

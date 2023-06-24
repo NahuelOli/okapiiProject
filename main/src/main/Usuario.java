@@ -4,17 +4,15 @@
  */
 package main;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
 
     private String username;
     private String password;
     private boolean estaLogueado;
     private String identificador;
-    private String nombre;
 
     public Usuario(String username, String password, String identificador) {
         this.username = username;
@@ -50,14 +48,14 @@ public abstract class Usuario {
     public void cambiarPassword() {
         Scanner scan = new Scanner(System.in);
         String password;
-        System.out.println("Ingrese su password actual.");
+        System.out.println("Ingrese su clave actual:");
         password = scan.nextLine();
         if (sonIgualesPasswords(password)) {
-            System.out.println("Ingrese su nueva password.");
+            System.out.println("Ingrese su nueva clave:");
             password = scan.nextLine();
             setPassword(password);
         } else {
-            System.out.println("Password ingresado incorrecto");
+            System.out.println("La clave ingresada es incorrecta.\n\n");
         }
     }
 
@@ -73,11 +71,6 @@ public abstract class Usuario {
         return this.password.equalsIgnoreCase(password);
     }
 
-    public abstract int getID();
-
     public abstract void verOpciones();
 
-    public abstract void addProyecto();
-
-    public abstract boolean tieneProyectos();
 }
