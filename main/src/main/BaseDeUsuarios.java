@@ -3,20 +3,44 @@ package main;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * La clase BaseDeUsuarios representa una base de datos de usuarios. Permite
+ * realizar operaciones relacionadas con los usuarios almacenados en la base de
+ * datos.
+ * 
+ * 
+ * @author Luciano Peluso
+ * @author Nahuel Olivera
+ */
 public class BaseDeUsuarios implements Serializable {
 
-    private ArrayList<Desarrollador> devs;
     private ArrayList<Usuario> u;
+    private ArrayList<Desarrollador> devs;
 
-    public BaseDeUsuarios() {
+    /**
+     * Crea una nueva instancia de BaseDeUsuarios. Inicializa las listas de
+     * desarrolladores y usuarios.
+     */
+    public BaseDeUsuarios(ArrayList devs) {
         u = new ArrayList<>();
-        devs = new ArrayList<>();
+        this.devs = devs;
     }
 
+    /**
+     * Verifica si la base de usuarios está vacía.
+     *
+     * @return true si la base de usuarios está vacía, false en caso contrario.
+     */
     public boolean estaVacia() {
         return u.isEmpty();
     }
 
+    /**
+     * Verifica si un usuario está disponible en la base de datos.
+     *
+     * @param user el nombre de usuario a verificar
+     * @return true si el usuario está disponible, false en caso contrario.
+     */
     public boolean chequearUsuario(String user) {
         boolean estaDisponible = true;
         Usuario userAComparar;
@@ -30,11 +54,17 @@ public class BaseDeUsuarios implements Serializable {
             if (userAComparar.sonIgualesUsers(user)) {
                 estaDisponible = false;
             }
-
         }
         return estaDisponible;
     }
 
+    /**
+     * Busca un usuario en la base de datos por su nombre de usuario.
+     *
+     * @param username el nombre de usuario a buscar
+     * @return el usuario encontrado o null si no se encuentra ningún usuario
+     * con ese nombre.
+     */
     public Usuario buscarUsuario(String username) {
         Usuario userBuscado = null;
         int i = 0;
@@ -48,28 +78,19 @@ public class BaseDeUsuarios implements Serializable {
                 userBuscado = null;
             }
         }
-
         return userBuscado;
     }
 
-    public void crearUsuarioCliente(String user, String password) {
-        Cliente usuarioEntrante = new Cliente(user, password, u.size() + 1, "Cliente");
-        if (u.add(usuarioEntrante)) {
-            System.out.println("Usuario creado con exito.");
-        }
-    }
-
-    public void crearUsuarioGerente(String user, String password) {
-        Gerente usuarioEntrante = new Gerente(user, password, "Gerente", u);
-        if (u.add(usuarioEntrante)) {
-            System.out.println("Usuario creado con exito.");
-        }
-    }
-
+    /**
+     * Crea un nuevo usuario administrador y lo agrega a la base de datos.
+     *
+     * @param user el nombre de usuario del administrador
+     * @param password la contraseña del administrador
+     */
     public void crearUsuarioAdministrador(String user, String password) {
         Administrador usuarioEntrante = new Administrador(user, password, u, devs, "Administrador");
         if (u.add(usuarioEntrante)) {
-            System.out.println("Usuario creado con exito.");
+            System.out.println("Usuario creado con éxito.");
         }
     }
 }

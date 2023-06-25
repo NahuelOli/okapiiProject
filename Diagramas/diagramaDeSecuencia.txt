@@ -1,0 +1,81 @@
+@startuml
+actor Cliente
+actor Gerente
+actor Administrador
+participant "Sistema" as Sistema
+participant "BaseDeUsuarios" as BaseDeUsuarios
+participant "Proyecto" as Proyecto
+participant "Desarrollador" as Desarrollador
+
+Cliente -> Sistema: arrancar()
+Cliente -> Sistema: mostrarOpciones()
+Cliente -> Sistema: loguearUsuario()
+Sistema -> BaseDeUsuarios: chequearUsuario(user)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Sistema: usuarioEncontrado
+Sistema -> Cliente: mostrarOpciones()
+Cliente -> Cliente: hacerOpcion()
+Cliente -> Sistema: verProyectos()
+Sistema -> Cliente: listaProyectos
+Cliente -> Cliente: verTituloProyectos()
+Cliente -> Sistema: setDesarrollador(dev)
+Sistema -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Sistema: usuarioEncontrado
+Sistema -> Cliente: mostrarDesarrolladores()
+Cliente -> Cliente: finalizarProyecto()
+Cliente -> Proyecto: setFechaFinalizado()
+Proyecto -> Proyecto: asignarFecha()
+Proyecto -> Proyecto: liberarDesarrolladores()
+Cliente -> Cliente: seDeslogueo()
+
+
+Gerente -> Sistema: arrancar()
+Gerente -> Sistema: mostrarOpciones()
+Gerente -> Sistema: loguearUsuario()
+Sistema -> BaseDeUsuarios: chequearUsuario(user)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Sistema: usuarioEncontrado
+Sistema -> Gerente: mostrarOpciones()
+Gerente -> Gerente: hacerOpcion(opcion)
+Gerente -> Gerente: seDeslogueo()
+
+Administrador -> Sistema: arrancar()
+Administrador -> Sistema: mostrarOpciones()
+Administrador -> Sistema: loguearUsuario()
+Sistema -> BaseDeUsuarios: chequearUsuario(user)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Sistema: usuarioEncontrado
+Sistema -> Administrador: mostrarOpciones()
+Administrador -> Administrador: hacerOpcion()
+Administrador -> BaseDeUsuarios: chequearUsuario(user)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Administrador: usuarioEncontrado
+Administrador -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Administrador: usuarioEncontrado
+Administrador -> BaseDeUsuarios: crearUsuarioCliente(user, password)
+BaseDeUsuarios -> BaseDeUsuarios: chequearUsuario(user)
+BaseDeUsuarios -> BaseDeUsuarios: crearUsuarioAdministrador(user, password)
+Administrador -> BaseDeUsuarios: mostrarDesarrolladoresDisponibles()
+BaseDeUsuarios -> BaseDeUsuarios: hayDesarrolladoresDisponibles()
+BaseDeUsuarios -> BaseDeUsuarios: asignarDesarrolladores()
+Administrador -> BaseDeUsuarios: crearUsuarioDesarrollador(user, habilidades)
+Administrador -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> BaseDeUsuarios: buscarUsuario(username)
+BaseDeUsuarios -> Administrador: usuarioEncontrado
+Administrador -> BaseDeUsuarios: registrarUsuarioCliente()
+Administrador -> Administrador: mostrarDesarrolladoresDisponibles()
+Administrador -> Administrador: hayDesarrolladoresDisponibles()
+Administrador -> Administrador: asignarDesarrolladores()
+Administrador -> BaseDeUsuarios: crearUsuarioGerente(user, password)
+BaseDeUsuarios -> BaseDeUsuarios: registrarUsuarioGerente()
+BaseDeUsuarios -> Administrador: buscarUsuario(username)
+BaseDeUsuarios -> Administrador: crearUsuarioDesarrollador(user, habilidades)
+BaseDeUsuarios -> BaseDeUsuarios: registrarusuarioDesarrollador()
+Administrador -> BaseDeUsuarios: verUsuarios()
+Administrador -> Administrador: seDeslogueo()
+
+
+@enduml
+
