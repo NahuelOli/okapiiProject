@@ -111,7 +111,7 @@ public class Sistema implements Serializable {
     private void registrarUsuarioAdmin() {
         String user;
         String password;
-        String laClave = "1234";
+        String laClave = "@Admin2603";
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Ingrese la clave de ADMINISTRADOR: ");
