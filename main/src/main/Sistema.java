@@ -101,9 +101,6 @@ public class Sistema implements Serializable {
             } else {
                 userABuscar = null;
             }
-        } else {
-            System.out.println("Usuario no encontrado. Volviendo al menu principal...\n");
-            arrancar();
         }
         return userABuscar;
     }
